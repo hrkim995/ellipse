@@ -3,12 +3,12 @@ extern crate sdl2;
 mod math;
 mod draw;
 
-use draw::draw_circle;
+use draw::{draw_circle, draw_ellipse};
 use sdl2::pixels::Color;
 use sdl2::{event::Event, keyboard::Keycode, Sdl};
 use sdl2::render::WindowCanvas;
 use std::time::{Duration, Instant};
-use math::{Vec2, Circle};
+use math::{Circle, Ellipse, Vec2};
 
 pub struct Game {
     sc: Sdl,
@@ -79,7 +79,8 @@ impl Game {
 
         // draw
         self.cvs.set_draw_color(Color::BLACK);
-        draw_circle(&mut self.cvs, Circle {center: Vec2 {x: 300.0, y: 300.0}, r: 150.0});
+        // draw_circle(&mut self.cvs, Circle {center: Vec2 {x: 300.0, y: 300.0}, r: 150.0});
+        draw_ellipse(&mut self.cvs, Ellipse {center: Vec2 {x: 300.0, y: 300.0}, a: 200.0, b: 150.0});
 
         self.cvs.present();
     }

@@ -34,3 +34,10 @@ pub struct Circle {
     pub center: Vec2,
     pub r: f32,
 }
+
+// x^2 / a^2 + y^2 / b^2 = 1
+pub struct Ellipse {
+    pub center: Vec2,
+    pub a: f32,
+    pub b: f32,
+}
