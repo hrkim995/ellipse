@@ -3,7 +3,7 @@ extern crate sdl2;
 mod math;
 mod draw;
 
-use draw::{draw_circle, draw_ellipse};
+use draw::{draw_circle, draw_ellipse, draw_fiiled_circle};
 use sdl2::pixels::Color;
 use sdl2::{event::Event, keyboard::Keycode, Sdl};
 use sdl2::render::WindowCanvas;
@@ -80,7 +80,10 @@ impl Game {
         // draw
         self.cvs.set_draw_color(Color::BLACK);
         // draw_circle(&mut self.cvs, Circle {center: Vec2 {x: 300.0, y: 300.0}, r: 150.0});
-        draw_ellipse(&mut self.cvs, Ellipse {center: Vec2 {x: 300.0, y: 300.0}, a: 200.0, b: 150.0});
+        let e = Ellipse::new(Vec2 {x: 300.0, y: 300.0}, 200.0, 150.0);
+        draw_ellipse(&mut self.cvs, &e);
+        draw_fiiled_circle(&mut self.cvs, &Circle {center: e.focus().0, r: 3.0});
+        draw_fiiled_circle(&mut self.cvs, &Circle {center: e.focus().1, r: 3.0});
 
         self.cvs.present();
     }

@@ -40,4 +40,20 @@ pub struct Ellipse {
     pub center: Vec2,
     pub a: f32,
     pub b: f32,
+    pub c: f32,
+}
+
+impl Ellipse {
+    pub fn new(center: Vec2, a: f32, b: f32) -> Self {
+        let c = f32::sqrt(f32::abs(a * a - b * b));
+        Ellipse {center, a, b, c}
+    }
+
+    pub fn focus(&self) -> (Vec2, Vec2) {
+        if self.a > self.b {
+            (self.center + Vec2 {x: self.c, y: 0.0}, self.center + Vec2 {x: -self.c, y: 0.0}) // right, left
+        } else { // don't think ellipse is circle
+            (self.center + Vec2 {x: 0.0, y: -self.c}, self.center + Vec2 {x: self.c, y: 0.0}) // top, bottom
+        }
+    }
 }
