@@ -1,9 +1,14 @@
 extern crate sdl2;
 
+mod math;
+mod draw;
+
+use draw::draw_circle;
 use sdl2::pixels::Color;
 use sdl2::{event::Event, keyboard::Keycode, Sdl};
 use sdl2::render::WindowCanvas;
 use std::time::{Duration, Instant};
+use math::{Vec2, Circle};
 
 pub struct Game {
     sc: Sdl,
@@ -73,6 +78,8 @@ impl Game {
         self.cvs.clear();
 
         // draw
+        self.cvs.set_draw_color(Color::BLACK);
+        draw_circle(&mut self.cvs, Circle {center: Vec2 {x: 300.0, y: 300.0}, r: 150.0});
 
         self.cvs.present();
     }
